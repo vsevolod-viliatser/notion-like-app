@@ -37,11 +37,16 @@ app.use('/api/taskTemplates', taskTemplateRoutes);
 app.use('/api/reminders', reminderRoutes);
 
 // Раздача статических файлов фронтенда
-app.use(express.static(path.join(__dirname, '../frontend/build')));
+const frontendPath = path.join(__dirname, '../frontend/build');
+app.use(express.static(frontendPath));
 
 // Обработка остальных запросов (если не попали в маршруты API)
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../frontend/build', 'index.html'));
+  if (req.originalUrl.startsWith('/api')) {
+    res.status(404).send('API route not found');
+  } else {
+    res.sendFile(path.join(frontendPath, 'index.html'));
+  }
 });
 
 // Глобальная обработка ошибок (опционально)
