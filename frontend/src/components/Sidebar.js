@@ -54,7 +54,6 @@ const Sidebar = ({ pages, onAddPage, onSelectPage, onDeletePage }) => {
 
   return (
     <div className="sidebar">
-
       <button onClick={() => onAddPage(null)}>Add Page</button>
       <ul>
         {rootPages.map((page) => (
@@ -68,8 +67,9 @@ const Sidebar = ({ pages, onAddPage, onSelectPage, onDeletePage }) => {
           />
         ))}
       </ul>
-      <PomodoroTimer /> {/* Интеграция таймера */}
+      <PomodoroTimer /> {/* Timer integration */}
     </div>
-  );};
+  );
+};
 
 export default Sidebar;

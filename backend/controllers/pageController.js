@@ -50,12 +50,27 @@ exports.createPage = async (req, res) => {
 
 // Get a single page
 exports.getPage = async (req, res) => {
+  const { id } = req.params;
+
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    console.error('Invalid Page ID:', id);
+    return res.status(400).json({ message: 'Invalid Page ID' });
+  }
+
   try {
-    const page = await Page.findOne({ _id: req.params.id, userId: req.user.id }).populate('parentPageId');
-    if (!page) return res.status(404).json({ message: 'Page not found' });
+    console.log('Fetching page for ID:', id);
+    console.log('Request User ID:', req.user.id);
+
+    const page = await Page.findOne({ _id: id, userId: req.user.id }).populate('parentPageId');
+    if (!page) {
+      console.log('Page not found for ID:', id);
+      return res.status(404).json({ message: 'Page not found' });
+    }
+
     res.status(200).json(page);
   } catch (err) {
-    res.status(500).json({ message: 'Server Error' });
+    console.error('Error fetching page:', err);
+    res.status(500).json({ message: 'Server Error', error: err.message });
   }
 };
 

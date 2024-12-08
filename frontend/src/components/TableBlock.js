@@ -105,5 +105,4 @@ const TableBlock = ({ block }) => {
 };
 
 
-
 export default TableBlock;

@@ -7,7 +7,6 @@ import PageEditor from './pages/PageEditor';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import './App.css';
-
 const App = () => {
   const isAuthenticated = !!localStorage.getItem('token');
 
@@ -29,5 +28,6 @@ const App = () => {
     </Router>
   );
 };
+
 
 export default App;

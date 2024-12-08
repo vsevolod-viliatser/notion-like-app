@@ -20,5 +20,4 @@ const BlockList = ({ blocks, setBlocks, pageId }) => {
     </div>
   );
 };
-
 export default BlockList;

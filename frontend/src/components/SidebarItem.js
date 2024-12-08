@@ -7,7 +7,7 @@ const SidebarItem = ({ page, pages, onSelectPage, onAddSubPage, onDeletePage }) 
   return (
     <li>
       <div className="sidebar-item">
-        <span onClick={() => onSelectPage(page)}>{page.title}</span>
+        <span onClick={() => onSelectPage(page._id)}>{page.title}</span> {/* Pass _id */}
         <button onClick={() => onAddSubPage(page._id)}>Add Subpage</button>
         <button onClick={() => onDeletePage(page._id)}>Delete</button>
       </div>
@@ -28,5 +28,6 @@ const SidebarItem = ({ page, pages, onSelectPage, onAddSubPage, onDeletePage }) 
     </li>
   );
 };
+
 
 export default SidebarItem;

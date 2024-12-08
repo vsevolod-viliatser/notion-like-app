@@ -1,4 +1,6 @@
 const Block = require('../models/Block');
+const mongoose = require('mongoose');
+
 // Block Controller
 exports.createBlock = async (req, res) => {
   const { pageId, type, content, position, parentBlockId } = req.body;
@@ -38,11 +40,22 @@ exports.createBlock = async (req, res) => {
 
 // Get all blocks for a page
 exports.getAllBlocks = async (req, res) => {
+  const { pageId } = req.params;
+
+  if (!mongoose.Types.ObjectId.isValid(pageId)) {
+    console.error('Invalid Page ID:', pageId);
+    return res.status(400).json({ message: 'Invalid Page ID' });
+  }
+
   try {
-    const blocks = await Block.find({ pageId: req.params.pageId, userId: req.user.id });
+    console.log('Fetching blocks for Page ID:', pageId);
+    console.log('Request User ID:', req.user.id);
+
+    const blocks = await Block.find({ pageId, userId: req.user.id });
     res.status(200).json(blocks);
   } catch (err) {
-    res.status(500).json({ message: 'Server Error' });
+    console.error('Error fetching blocks:', err);
+    res.status(500).json({ message: 'Server Error', error: err.message });
   }
 };
 

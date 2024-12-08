@@ -32,7 +32,7 @@ const NewBlock = ({ setBlocks, blocks, pageId }) => {
 
       content = JSON.stringify({
         rows: Array.from({ length: rows }, () => Array(columns).fill('')),
-        columns: Array.from({ length: columns }, (_, idx) => `Column ${idx + 1}`),
+        columns: Array.from({ length: columns }, (_, idx) =>`Column ${idx + 1}`),
       });
     } else if (selectedType === 'to-do') {
       content = JSON.stringify([]);
