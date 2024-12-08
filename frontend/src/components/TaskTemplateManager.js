@@ -21,26 +21,33 @@ const TaskTemplateManager = () => {
 
   const fetchTemplates = async () => {
     try {
-      const res = await API.get('/taskTemplates'); // Корректный путь
+      const res = await API.get('/taskTemplates'); // Correct endpoint
       setTemplates(res.data);
     } catch (err) {
-      console.error('Ошибка при получении шаблонов задач:', err);
-      toast.error('Не удалось получить шаблоны задач.');
+      console.error('Error fetching task templates:', err);
+      toast.error('Failed to fetch task templates.');
     }
   };
 
   const handleInputChange = (e) => {
-    const { name, value, type, checked } = e.target;
-    setForm({
-      ...form,
-      [name]: type === 'checkbox' ? checked : value,
-    });
+    const { name, value } = e.target;
+    setForm((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  const toggleDefaultRecurring = () => {
+    setForm((prev) => ({
+      ...prev,
+      defaultRecurring: !prev.defaultRecurring,
+    }));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await API.post('/taskTemplates', form); // Корректный путь
+      await API.post('/taskTemplates', form); // Correct endpoint
       setForm({
         name: '',
         defaultTitle: '',
@@ -50,30 +57,30 @@ const TaskTemplateManager = () => {
         defaultRecurrencePattern: 'daily',
       });
       fetchTemplates();
-      toast.success('Шаблон задачи успешно создан!');
+      toast.success('Task template created successfully!');
     } catch (err) {
-      console.error('Ошибка при создании шаблона задачи:', err);
-      toast.error('Не удалось создать шаблон задачи.');
+      console.error('Error creating task template:', err);
+      toast.error('Failed to create task template.');
     }
   };
 
   const deleteTemplate = async (templateId) => {
     try {
-      await API.delete(`/taskTemplates/${templateId}`); // Корректный путь
+      await API.delete(`/taskTemplates/${templateId}`); // Correct endpoint
       fetchTemplates();
-      toast.success('Шаблон задачи удален!');
+      toast.success('Task template deleted!');
     } catch (err) {
-      console.error('Ошибка при удалении шаблона задачи:', err);
-      toast.error('Не удалось удалить шаблон задачи.');
+      console.error('Error deleting task template:', err);
+      toast.error('Failed to delete task template.');
     }
   };
 
   return (
     <div className="task-template-manager">
-      <h2>Шаблоны Задач</h2>
+      <h2>Шаблони Завдань</h2>
       <form onSubmit={handleSubmit}>
         <div>
-          <label>Название шаблона:</label>
+          <label>Назва Шаблону:</label>
           <input
             type="text"
             name="name"
@@ -83,7 +90,7 @@ const TaskTemplateManager = () => {
           />
         </div>
         <div>
-          <label>Заголовок по умолчанию:</label>
+          <label>Заголовок за Замовчуванням:</label>
           <input
             type="text"
             name="defaultTitle"
@@ -93,7 +100,7 @@ const TaskTemplateManager = () => {
           />
         </div>
         <div>
-          <label>Описание по умолчанию:</label>
+          <label>Опис за Замовчуванням:</label>
           <textarea
             name="defaultDescription"
             value={form.defaultDescription}
@@ -101,7 +108,7 @@ const TaskTemplateManager = () => {
           ></textarea>
         </div>
         <div>
-          <label>Срок выполнения по умолчанию:</label>
+          <label>Термін Виконання за Замовчуванням:</label>
           <input
             type="date"
             name="defaultDueDate"
@@ -111,43 +118,45 @@ const TaskTemplateManager = () => {
           />
         </div>
         <div>
-          <label>Повторяющаяся по умолчанию:</label>
-          <input
-            type="checkbox"
-            name="defaultRecurring"
-            checked={form.defaultRecurring}
-            onChange={handleInputChange}
-          />
+          <label>Повторення за Замовчуванням:</label>
+          <button
+            type="button"
+            className={`toggle-button ${form.defaultRecurring ? 'active' : ''}`}
+            onClick={toggleDefaultRecurring}
+          >
+            {form.defaultRecurring ? 'Так' : 'Ні'}
+          </button>
         </div>
         {form.defaultRecurring && (
           <div>
-            <label>Паттерн повторения по умолчанию:</label>
+            <label>Паттерн Повторення за Замовчуванням:</label>
             <select
               name="defaultRecurrencePattern"
               value={form.defaultRecurrencePattern}
               onChange={handleInputChange}
             >
-              <option value="daily">Ежедневно</option>
-              <option value="weekly">Еженедельно</option>
-              <option value="monthly">Ежемесячно</option>
-              <option value="yearly">Ежегодно</option>
+              <option value="daily">Щодня</option>
+              <option value="weekly">Щотижня</option>
+              <option value="monthly">Щомісяця</option>
+              <option value="yearly">Щороку</option>
             </select>
           </div>
         )}
-        <button type="submit">Создать Шаблон</button>
+        <button type="submit">Створити Шаблон</button>
       </form>
-
-      <h3>Существующие Шаблоны</h3>
+  
+      <h3>Існуючі Шаблони</h3>
       <ul>
-        {templates.map(template => (
+        {templates.map((template) => (
           <li key={template._id}>
             <strong>{template.name}</strong> - {template.defaultTitle}
-            <button onClick={() => deleteTemplate(template._id)}>Удалить</button>
+            <button onClick={() => deleteTemplate(template._id)}>Видалити</button>
           </li>
         ))}
       </ul>
     </div>
   );
+  
 };
 
 export default TaskTemplateManager;

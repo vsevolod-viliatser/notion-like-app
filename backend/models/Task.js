@@ -1,4 +1,3 @@
-// models/Task.js
 const mongoose = require('mongoose');
 
 const TaskSchema = new mongoose.Schema({
@@ -10,7 +9,7 @@ const TaskSchema = new mongoose.Schema({
   title: {
     type: String,
     required: true,
-    trim: true, // Удаляет пробелы в начале и конце
+    trim: true,
   },
   description: {
     type: String,
@@ -18,6 +17,11 @@ const TaskSchema = new mongoose.Schema({
   },
   dueDate: {
     type: Date,
+    required: true,
+  },
+  notifyBefore: {
+    type: Number, // Время в минутах до срока, за которое нужно отправить напоминание
+    default: 60,
   },
   completed: {
     type: Boolean,
@@ -33,7 +37,7 @@ const TaskSchema = new mongoose.Schema({
   recurrencePattern: {
     type: String,
     enum: ['daily', 'weekly', 'monthly', 'yearly'],
-    default: 'daily',
+    default: null,
   },
 }, { timestamps: true });
 

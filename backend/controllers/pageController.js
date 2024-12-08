@@ -58,8 +58,6 @@ exports.getPage = async (req, res) => {
   }
 
   try {
-    console.log('Fetching page for ID:', id);
-    console.log('Request User ID:', req.user.id);
 
     const page = await Page.findOne({ _id: id, userId: req.user.id }).populate('parentPageId');
     if (!page) {

@@ -9,18 +9,10 @@ import ProductivityHeatmap from './ProductivityHeatmap';
 const ProductivityDashboard = () => {
   return (
     <div className="productivity-dashboard">
-      <h2>Productivity Overview</h2>
-
-      {/* Напоминания */}
+      <h2>Огляд продуктивності</h2>
       <Reminders />
-
-      {/* Управление задачами */}
       <TaskManager />
-
-      {/* Управление шаблонами задач */}
       <TaskTemplateManager />
-
-      {/* Графики продуктивности */}
       <DailyProductivityChart />
       <WeeklyProductivityChart />
       <MonthlyProductivityChart />

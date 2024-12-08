@@ -23,7 +23,7 @@ const DailyProductivityChart = () => {
 
   return (
     <div className="chart-container">
-      <h3>Дневная продуктивность за последние 30 дней</h3>
+      <h3>Денна продуктивність за останні 30 днів</h3>
       <ResponsiveContainer width="100%" height={300}>
         <LineChart
           data={data}

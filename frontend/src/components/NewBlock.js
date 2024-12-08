@@ -77,7 +77,7 @@ const NewBlock = ({ setBlocks, blocks, pageId }) => {
               type="number"
               value={tableRows}
               onChange={(e) => setTableRows(e.target.value)}
-              placeholder="Enter number of rows"
+              placeholder="Введіть кількість рядків"
               min="1"
             />
           </label>
@@ -87,7 +87,7 @@ const NewBlock = ({ setBlocks, blocks, pageId }) => {
               type="number"
               value={tableColumns}
               onChange={(e) => setTableColumns(e.target.value)}
-              placeholder="Enter number of columns"
+              placeholder="Введіть кількість стовпців"
               min="1"
             />
           </label>
@@ -99,11 +99,11 @@ const NewBlock = ({ setBlocks, blocks, pageId }) => {
           type="text"
           value={newBlockContent}
           onChange={(e) => setNewBlockContent(e.target.value)}
-          placeholder={`Enter ${selectedType} content...`}
+          placeholder={`Введiть ${selectedType} контент...`}
         />
       )}
 
-      <button onClick={addBlock}>Add Block</button>
+      <button onClick={addBlock}>Додати блок</button>
     </div>
   );
 };

@@ -23,7 +23,7 @@ const MonthlyProductivityChart = () => {
 
   return (
     <div className="chart-container">
-      <h3>Месячная продуктивность за последний год</h3>
+      <h3>Місячна продуктивність за останній рік</h3>
       <ResponsiveContainer width="100%" height={300}>
         <BarChart
           data={data}

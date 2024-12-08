@@ -2,6 +2,8 @@
 import React from 'react';
 import SidebarItem from './SidebarItem';
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 const PomodoroTimer = () => {
   const [time, setTime] = useState(25 * 60); // Таймер на 25 минут (в секундах)
   const [isRunning, setIsRunning] = useState(false);
@@ -38,14 +40,22 @@ const PomodoroTimer = () => {
       <h3>Pomodoro Timer</h3>
       <div className="timer-display">{formatTime(time)}</div>
       <div className="timer-controls">
-        <button onClick={handleStartPause}>{isRunning ? 'Pause' : 'Start'}</button>
-        <button onClick={handleReset}>Reset</button>
+        <button onClick={handleStartPause}>{isRunning ? 'Пауза' : 'Старт'}</button>
+        <button onClick={handleReset}>Сброс</button>
       </div>
     </div>
   );
 };
 
-const Sidebar = ({ pages, onAddPage, onSelectPage, onDeletePage }) => {
+const Sidebar = ({ pages, onAddPage, onSelectPage, onDeletePage, onSwitchView }) => {
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('lastLoginTime');
+    navigate('/login');
+  };
+
   const rootPages = pages.filter((page) => !page.parentPageId);
 
   const handleAddSubPage = (parentPageId) => {
@@ -54,7 +64,8 @@ const Sidebar = ({ pages, onAddPage, onSelectPage, onDeletePage }) => {
 
   return (
     <div className="sidebar">
-      <button onClick={() => onAddPage(null)}>Add Page</button>
+      <button onClick={() => onAddPage(null)}>Додати сторінку</button>
+      <button onClick={() => onSwitchView('productivity')}>Приладова панель</button> {/* New Dashboard Button */}
       <ul>
         {rootPages.map((page) => (
           <SidebarItem
@@ -67,9 +78,13 @@ const Sidebar = ({ pages, onAddPage, onSelectPage, onDeletePage }) => {
           />
         ))}
       </ul>
-      <PomodoroTimer /> {/* Timer integration */}
+      <PomodoroTimer /> {/* Integration of Pomodoro Timer */}
+      <button className="logout-button" onClick={handleLogout}>
+        Logout
+      </button>
     </div>
   );
 };
+
 
 export default Sidebar;

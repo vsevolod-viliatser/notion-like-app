@@ -12,14 +12,14 @@ const ProductivityHeatmap = () => {
   useEffect(() => {
     const fetchHeatmapData = async () => {
       try {
-        const response = await API.get('/productivity/dailyProductivity'); // Корректный путь
+        const response = await API.get('/productivity/dailyProductivity'); // Correct endpoint
         const heatmapData = response.data.map(item => ({
           date: item.date,
           count: item.count,
         }));
         setData(heatmapData);
       } catch (error) {
-        console.error('Ошибка при получении данных для тепловой карты:', error);
+        console.error('Error fetching heatmap data:', error);
       }
     };
 
@@ -28,7 +28,7 @@ const ProductivityHeatmap = () => {
 
   return (
     <div className="heatmap-container">
-      <h3>Тепловая карта продуктивности</h3>
+      <h3>Теплова карта продуктивності</h3>
       <CalendarHeatmap
         startDate={new Date(new Date().setDate(new Date().getDate() - 30))}
         endDate={new Date()}
@@ -49,7 +49,7 @@ const ProductivityHeatmap = () => {
             return 'color-empty';
           }
         }}
-        tooltipDataAttrs={value => {
+        tooltipDataAttrs={(value) => {
           if (!value || !value.date) {
             return null;
           }
@@ -59,6 +59,9 @@ const ProductivityHeatmap = () => {
           };
         }}
         showWeekdayLabels={true}
+        width={400} // Smaller width
+        height={100} // Smaller height
+        gutterSize={1} // Reduced spacing between blocks
       />
       <Tooltip id="heatmap-tooltip" />
     </div>

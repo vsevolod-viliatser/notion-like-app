@@ -15,6 +15,7 @@ const cron = require('node-cron');
 const sendReminder = require('./utils/email');
 const Task = require('./models/Task');
 const User = require('./models/User');
+require('./cronJobs/reminderCron');
 
 const app = express();
 app.use(express.json());

@@ -9,11 +9,10 @@ const Reminders = () => {
 
   useEffect(() => {
     fetchReminders();
-    // Добавление интервала для периодического обновления напоминаний
     const interval = setInterval(() => {
       fetchReminders();
-    }, 60 * 1000); // Обновлять каждую минуту
-
+    }, 60 * 1000); // Refresh every minute
+  
     return () => clearInterval(interval);
   }, []);
 
@@ -29,14 +28,14 @@ const Reminders = () => {
 
   return (
     <div className="reminders">
-      <h2>Предстоящие Напоминания</h2>
+      <h2>Майбутні нагадування</h2>
       {reminders.length === 0 ? (
-        <p>Нет предстоящих напоминаний.</p>
+        <p>Немає майбутніх нагадувань.</p>
       ) : (
         <ul>
           {reminders.map(reminder => (
             <li key={reminder._id}>
-              <strong>{reminder.title}</strong> - {reminder.dueDate ? new Date(reminder.dueDate).toLocaleString() : 'Без срока'}
+              <strong>{reminder.title}</strong> - {reminder.dueDate ? new Date(reminder.dueDate).toLocaleString() : 'Нема сроку'}
             </li>
           ))}
         </ul>

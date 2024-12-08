@@ -8,8 +8,8 @@ const SidebarItem = ({ page, pages, onSelectPage, onAddSubPage, onDeletePage }) 
     <li>
       <div className="sidebar-item">
         <span onClick={() => onSelectPage(page._id)}>{page.title}</span> {/* Pass _id */}
-        <button onClick={() => onAddSubPage(page._id)}>Add Subpage</button>
-        <button onClick={() => onDeletePage(page._id)}>Delete</button>
+        <button onClick={() => onAddSubPage(page._id)}>Додати підсторінку</button>
+        <button onClick={() => onDeletePage(page._id)}>Видалити</button>
       </div>
       {childPages.length > 0 && (
         <ul>

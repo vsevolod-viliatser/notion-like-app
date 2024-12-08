@@ -29,7 +29,7 @@ const AuthPage = ({ type }) => {
       <form onSubmit={handleSubmit}>
         {type === 'register' && (
           <div className="input-group">
-            <label>Username</label>
+            <label>Юзернейм</label>
             <input
               type="text"
               value={username}
@@ -39,7 +39,7 @@ const AuthPage = ({ type }) => {
           </div>
         )}
         <div className="input-group">
-          <label>Email</label>
+          <label>Пошта</label>
           <input
             type="email"
             value={email}
@@ -48,7 +48,7 @@ const AuthPage = ({ type }) => {
           />
         </div>
         <div className="input-group">
-          <label>Password</label>
+          <label>Пароль</label>
           <input
             type="password"
             value={password}
@@ -56,7 +56,7 @@ const AuthPage = ({ type }) => {
             required
           />
         </div>
-        <button type="submit">{type === 'register' ? 'Register' : 'Login'}</button>
+        <button type="submit">{type === 'register' ? 'Реєстрація' : 'Вхід'}</button>
       </form>
       <button
         type="button"
@@ -65,8 +65,8 @@ const AuthPage = ({ type }) => {
         }
       >
         {type === 'register'
-          ? 'Already have an account? Login'
-          : "Don't have an account? Register"}
+          ? 'Вже маєте акаунт? Логін'
+          : "Немає облікового запису? зареєструватися"}
       </button>
     </div>
   );

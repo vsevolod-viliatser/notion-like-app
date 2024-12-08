@@ -1,16 +1,14 @@
 const Task = require('../models/Task')
 exports.createTask = async (req, res) => {
   try {
-    // Логирование для отладки
-    console.log('Создание задачи для пользователя:', req.user);
-
-    const { title, description, dueDate, recurring, recurrencePattern } = req.body;
+    const { title, description, dueDate, notifyBefore, recurring, recurrencePattern } = req.body;
 
     const newTask = new Task({
-      userId: req.user._id, // Устанавливаем userId из req.user
+      userId: req.user._id,
       title,
       description,
       dueDate,
+      notifyBefore: notifyBefore || 60,
       recurring,
       recurrencePattern,
     });
@@ -21,7 +19,8 @@ exports.createTask = async (req, res) => {
     console.error('Ошибка при создании задачи:', err);
     res.status(400).json({ error: err.message });
   }
-}
+};
+
 exports.getTasks = async (req, res) => {
   try {
     // Получаем только задачи текущего пользователя
@@ -34,7 +33,6 @@ exports.getTasks = async (req, res) => {
 }
 exports.updateTask = async (req, res) => {
   try {
-    // Находим задачу только среди задач текущего пользователя
     const task = await Task.findOneAndUpdate(
       { _id: req.params.id, userId: req.user._id },
       req.body,
@@ -46,7 +44,8 @@ exports.updateTask = async (req, res) => {
     console.error('Ошибка при обновлении задачи:', err);
     res.status(400).json({ error: err.message });
   }
-}
+};
+
 exports.deleteTask = async (req, res) => {
   try {
     // Удаляем задачу только среди задач текущего пользователя

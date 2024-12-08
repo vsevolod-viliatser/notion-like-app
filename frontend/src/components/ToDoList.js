@@ -62,11 +62,11 @@ const ToDoList = ({ block }) => {
               value={item.text}
               onChange={(e) => updateItem(index, e.target.value)}
             />
-            <button onClick={() => deleteItem(index)}>Delete</button>
+            <button onClick={() => deleteItem(index)}>Видалити</button>
           </li>
         ))}
       </ul>
-      <button onClick={addItem}>Add Item</button>
+      <button onClick={addItem}>Додати</button>
     </div>
   );
 };

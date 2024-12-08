@@ -1,7 +1,5 @@
-// src/pages/HomePage.js
 import React, { useState, useEffect } from 'react';
 import Sidebar from '../components/Sidebar';
-
 import PageEditor from './PageEditor';
 import ProductivityDashboard from '../components/ProductivityDashboard';
 import API from '../api';
@@ -44,6 +42,15 @@ const HomePage = () => {
 
   const handleSelectPage = (pageId) => {
     setSelectedPageId(pageId);
+    setView('pages'); // Ensure we are in "pages" view when a page is selected
+  };
+
+  const handleUpdatePage = (updatedPage) => {
+    setPages((prevPages) =>
+      prevPages.map((page) =>
+        page._id === updatedPage._id ? { ...page, title: updatedPage.title } : page
+      )
+    );
   };
 
   return (
@@ -58,9 +65,9 @@ const HomePage = () => {
       <div className="content">
         {view === 'pages' ? (
           selectedPageId ? (
-            <PageEditor pageId={selectedPageId} />
+            <PageEditor pageId={selectedPageId} onUpdatePage={handleUpdatePage} />
           ) : (
-            <div>Select a page to edit</div>
+            <div>Виберіть сторінку для редагування</div>
           )
         ) : (
           <ProductivityDashboard />
@@ -68,6 +75,6 @@ const HomePage = () => {
       </div>
     </div>
   );
-}
+};
 
 export default HomePage;

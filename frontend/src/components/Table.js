@@ -70,8 +70,8 @@ const Table = ({ block }) => {
   return (
     <div className="table-container">
       <div className="table-actions">
-        <button onClick={addRow}>Add Row</button>
-        <button onClick={addColumn}>Add Column</button>
+        <button onClick={addRow}>Додати рядок</button>
+        <button onClick={addColumn}>Додати стовпець</button>
       </div>
       <table>
         <thead>
@@ -87,7 +87,7 @@ const Table = ({ block }) => {
                     saveTable({ ...tableData, columns: newColumns });
                   }}
                 />
-                <button onClick={() => deleteColumn(colIndex)}>Delete</button>
+                <button onClick={() => deleteColumn(colIndex)}>Видалити</button>
               </th>
             ))}
           </tr>
@@ -105,7 +105,7 @@ const Table = ({ block }) => {
                 </td>
               ))}
               <td>
-                <button onClick={() => deleteRow(rowIndex)}>Delete Row</button>
+                <button onClick={() => deleteRow(rowIndex)}>Видалити рядок</button>
               </td>
             </tr>
           ))}

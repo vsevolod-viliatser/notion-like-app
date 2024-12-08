@@ -1,243 +1,222 @@
-/* src/styles.css */
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-  }
-  
-  button {
-    padding: 8px 12px;
-    margin: 5px;
-  }
-  
-  input, textarea, select {
-    padding: 8px;
-    margin: 5px 0;
-    width: 100%;
-    box-sizing: border-box;
-  }
-  .auth-container {
-    max-width: 400px;
-    margin: 50px auto;
-  }
-  
-  .input-group {
-    margin-bottom: 15px;
-  }
-  
-  .input-group label {
-    display: block;
-  }
-  
-  .input-group input {
-    width: 100%;
-    padding: 8px;
-    box-sizing: border-box;
-  }
-  .home {
-    display: flex;
-  }
-  
-  .sidebar {
-    width: 250px;
-    border-right: 1px solid #ddd;
-    padding: 10px;
-  }
-  
-  .sidebar ul {
-    list-style-type: none;
-    padding-left: 15px;
-  }
-  
-  .sidebar-item {
-    display: flex;
-    align-items: center;
-  }
-  
-  .sidebar-item span {
-    cursor: pointer;
-    flex-grow: 1;
-  }
-  
-  .sidebar-item button {
-    margin-left: 5px;
-  }
-  
-  .content {
-    flex-grow: 1;
-    padding: 20px;
-  }  
-  .page-editor {
-    padding: 20px;
-  }
-  
-  .page-title {
-    font-size: 24px;
-    margin-bottom: 20px;
-  }
-  
-  .block {
-    margin-bottom: 15px;
-  }
-  
-  .block textarea,
-  .block input[type='text'] {
-    width: 100%;
-    min-height: 50px;
-  }
-  
-  .block button {
-    margin-top: 5px;
-  }
-  
-  .new-block input {
-    width: 100%;
-    padding: 8px;
-  }
-  
-  .block-draggable {
-    margin-bottom: 10px;
-  }
-  .todo-list {
-    margin-top: 10px;
-  }
-  
-  .todo-item {
-    display: flex;
-    align-items: center;
-    margin-bottom: 5px;
-  }
-  
-  .todo-item input[type='text'] {
-    flex-grow: 1;
-    margin: 0 5px;
-  }
-  
-  .todo-item select {
-    margin: 0 5px;
-  }
-  
-  .todo-item button {
-    margin-left: 5px;
-  }
-  .block-code textarea {
-    width: 100%;
-    min-height: 100px;
-    font-family: monospace;
-  }
-  
-  .block-code select {
-    margin-bottom: 5px;
-  }
-  
-  .block-embed .dropzone {
-    border: 2px dashed #ccc;
-    padding: 20px;
-    text-align: center;
-    cursor: pointer;
-  }
-  
-  .block-embed img {
-    max-width: 100%;
-    height: auto;
-  }
-  
-  .table-container {
-    margin-top: 10px;
-  }
-  
-  .table-container table {
-    width: 100%;
-    border-collapse: collapse;
-  }
-  
-  .table-container th,
-  .table-container td {
-    border: 1px solid #ddd;
-    padding: 8px;
-  }
-  
-  .table-container th {
-    background-color: #f2f2f2;
-  }
-  
-  .table-container input[type='text'],
-  .table-container input[type='number'],
-  .table-container input[type='date'] {
-    width: 100%;
-    box-sizing: border-box;
-  }
-  .table-container {
-    margin: 1rem 0;
-  }
-  
-  .table-actions {
-    margin-bottom: 0.5rem;
-  }
-  
-  table {
-    width: 100%;
-    border-collapse: collapse;
-  }
-  
-  th, td {
-    border: 1px solid #ddd;
-    padding: 8px;
-  }
-  
-  th input, td input {
-    width: 100%;
-    border: none;
-    background: transparent;
-  }
-  .table-block table {
-    border-collapse: collapse;
-    width: 100%;
-  }
-  
-  .table-block th, .table-block td {
-    border: 1px solid #ccc;
-    padding: 8px;
-    text-align: left;
-  }
-  
-  .table-block input {
-    width: 100%;
-    box-sizing: border-box;
-  }
-  .block {
-    margin-bottom: 16px;
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-  }
-  
-  .block p, .block h2, .block blockquote {
-    margin: 0;
-  }
-  
-  .table-block table {
-    width: 100%;
-    border-collapse: collapse;
-  }
-  
-  .table-block th, .table-block td {
-    border: 1px solid #ddd;
-    padding: 8px;
-    text-align: left;
-  }
-  
-  .embed-block iframe {
-    width: 100%;
-    height: 300px;
-    border: none;
-  }
-  /* styles.css */
-.color-empty {
-  fill: #eeeeee;
+/* Variables */
+:root {
+  --primary-color: #4CAF50;
+  --secondary-color: #2196F3;
+  --danger-color: #f44336;
+  --text-color: #333;
+  --bg-color: #f9f9f9;
+  --border-color: #ddd;
+  --border-radius: 4px;
+  --box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  --padding: 16px;
+  --margin: 16px;
+  --font-family: 'Arial', sans-serif;
 }
 
-.color-github-0 {
-  fill: #ebedf0;
+/* General Styles */
+body {
+  margin: 0;
+  font-family: var(--font-family);
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  line-height: 1.6;
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 16px;
+  color: white;
+  background-color: var(--primary-color);
+  border: none;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+button:focus {
+  outline: 2px solid var(--secondary-color);
+}
+
+.button-danger {
+  background-color: var(--danger-color);
+}
+
+.button-danger:hover {
+  background-color: #d32f2f;
+}
+
+input, textarea, select {
+  padding: 10px;
+  margin: 10px 0;
+  width: 100%;
+  font-size: 14px;
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  background-color: #fff;
+  box-sizing: border-box;
+}
+
+input:focus, textarea:focus, select:focus {
+  border-color: var(--primary-color);
+  outline: none;
+}
+
+label {
+  font-weight: bold;
+  margin-bottom: 5px;
+  display: block;
+}
+
+/* Layout */
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.home {
+  display: flex;
+  min-height: 100vh;
+}
+
+.sidebar {
+  width: 250px;
+  background-color: #fff;
+  border-right: 1px solid var(--border-color);
+  box-shadow: var(--box-shadow);
+  padding: var(--padding);
+}
+
+.content {
+  flex: 1;
+  padding: var(--padding);
+  background-color: var(--bg-color);
+}
+
+/* Sidebar */
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar ul li {
+  margin: 10px 0;
+}
+
+.sidebar ul li a {
+  text-decoration: none;
+  color: var(--text-color);
+  padding: 10px;
+  display: block;
+  border-radius: var(--border-radius);
+  transition: background-color 0.3s ease;
+}
+
+.sidebar ul li a:hover {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+/* Forms */
+.auth-container {
+  max-width: 400px;
+  margin: 50px auto;
+}
+
+.input-group {
+  margin-bottom: 15px;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 8px;
+  box-sizing: border-box;
+}
+
+/* Cards */
+.card {
+  background-color: white;
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  padding: var(--padding);
+  margin-bottom: var(--margin);
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  transition: all 0.2s ease-in-out;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-family);
+  margin-bottom: 10px;
+}
+
+h1 {
+  font-size: 2rem;
+}
+
+h2 {
+  font-size: 1.75rem;
+}
+
+h3 {
+  font-size: 1.5rem;
+}
+
+p {
+  margin-bottom: 15px;
+}
+
+/* Tables */
+.table-container {
+  margin: var(--margin) 0;
+}
+
+.table-container table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table-container th, .table-container td {
+  padding: 10px;
+  text-align: left;
+  border: 1px solid var(--border-color);
+}
+
+.table-container th {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.table-container tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.table-container tr:hover {
+  background-color: #f1f1f1;
+}
+
+/* Productivity Heatmap */
+.heatmap-container {
+  margin: var(--margin) 0;
+  text-align: center;
+}
+
+.heatmap-container svg {
+  width: 100%;
+  height: auto;
+  max-height: 200px;
+}
+
+.color-empty {
+  fill: #eeeeee;
 }
 
 .color-github-1 {
@@ -256,177 +235,7 @@ body {
   fill: #196127;
 }
 
-  /* src/App.css */
-
-.task-manager {
-  background: #fff;
-  padding: 20px;
-  margin-bottom: 20px;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-.task-manager form div {
-  margin-bottom: 10px;
-}
-
-.task-manager label {
-  display: block;
-  margin-bottom: 5px;
-}
-
-.task-manager input[type="text"],
-.task-manager input[type="date"],
-.task-manager select,
-.task-manager textarea {
-  width: 100%;
-  padding: 8px;
-  box-sizing: border-box;
-}
-
-.task-manager button {
-  padding: 10px 15px;
-  background-color: #4CAF50;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-.task-manager button:hover {
-  background-color: #45a049;
-}
-
-.task-manager ul {
-  list-style: none;
-  padding: 0;
-}
-
-.task-manager li {
-  display: flex;
-  align-items: center;
-  margin-bottom: 5px;
-}
-
-.task-manager li span {
-  flex-grow: 1;
-  margin-left: 10px;
-}
-
-.task-manager li button {
-  margin-left: 10px;
-  padding: 5px 10px;
-  background-color: #f44336;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-.task-manager li button:hover {
-  background-color: #d32f2f;
-}
-/* src/App.css */
-
-.task-template-manager {
-  background: #fff;
-  padding: 20px;
-  margin-bottom: 20px;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-.task-template-manager form div {
-  margin-bottom: 10px;
-}
-
-.task-template-manager label {
-  display: block;
-  margin-bottom: 5px;
-}
-
-.task-template-manager input[type="text"],
-.task-template-manager input[type="date"],
-.task-template-manager select,
-.task-template-manager textarea {
-  width: 100%;
-  padding: 8px;
-  box-sizing: border-box;
-}
-
-.task-template-manager button {
-  padding: 10px 15px;
-  background-color: #2196F3;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-.task-template-manager button:hover {
-  background-color: #1976D2;
-}
-
-.task-template-manager ul {
-  list-style: none;
-  padding: 0;
-}
-
-.task-template-manager li {
-  display: flex;
-  align-items: center;
-  margin-bottom: 5px;
-}
-
-.task-template-manager li strong {
-  flex-grow: 1;
-}
-
-.task-template-manager li button {
-  margin-left: 10px;
-  padding: 5px 10px;
-  background-color: #f44336;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-.task-template-manager li button:hover {
-  background-color: #d32f2f;
-}
-/* src/App.css */
-
-.reminders {
-  background: #fff;
-  padding: 20px;
-  margin-bottom: 20px;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-.reminders ul {
-  list-style: none;
-  padding: 0;
-}
-
-.reminders li {
-  padding: 10px;
-  border-bottom: 1px solid #ddd;
-}
-
-.reminders li:last-child {
-  border-bottom: none;
-}
-
-.reminders strong {
-  display: block;
-  margin-bottom: 5px;
-}
-.task-manager li.completed {
-  color: gray;
-  text-decoration: line-through;
-}
+/* Pomodoro Timer */
 .pomodoro-timer {
   background: #f4f4f4;
   border: 1px solid #ccc;
@@ -453,4 +262,78 @@ body {
 
 .timer-controls button:hover {
   background: #0056b3;
+}
+
+/* Reminders */
+.reminders {
+  background: #fff;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+}
+
+.reminders ul {
+  list-style: none;
+  padding: 0;
+}
+
+.reminders li {
+  padding: 10px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.reminders li:last-child {
+  border-bottom: none;
+}
+
+.reminders strong {
+  display: block;
+  margin-bottom: 5px;
+}
+.sidebar button {
+  padding: 6px 10px; /* Smaller padding */
+  font-size: 14px; /* Smaller font size */
+  margin: 5px 0; /* Adjusted margin */
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.sidebar button:hover {
+  background-color: #45a049;
+}
+
+.sidebar ul li a {
+  padding: 6px 10px; /* Adjust link padding for consistency */
+  font-size: 14px; /* Match button font size */
+}
+
+.sidebar ul li a:hover {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.sidebar ul {
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar ul li {
+  margin: 5px 0; /* Smaller spacing between items */
+}
+.toggle-button {
+  padding: 5px 10px;
+  background-color: #ccc;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.toggle-button.active {
+  background-color: #4caf50;
+  color: white;
 }
