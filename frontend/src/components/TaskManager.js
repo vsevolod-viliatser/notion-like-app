@@ -143,7 +143,7 @@ const TaskManager = () => {
           />
         </div>
         <div>
-          <label>Напомнить за (минут):</label>
+          <label>Нагадати за (хвилин):</label>
           <input
             type="number"
             name="notifyBefore"

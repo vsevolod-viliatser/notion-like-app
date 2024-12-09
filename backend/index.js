@@ -11,11 +11,11 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-// Подключение к MongoDB
+
 mongoose
   .connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => console.log('MongoDB connected'))
-  .catch((err) => console.error('Ошибка подключения к MongoDB:', err));
+  .catch((err) => console.error('Ошибка підключення до MongoDB:', err));
 
 // Ваши маршруты API
 const authRoutes = require('./routes/authRoutes');
@@ -36,11 +36,10 @@ app.use('/api/tasks', taskRoutes);
 app.use('/api/taskTemplates', taskTemplateRoutes);
 app.use('/api/reminders', reminderRoutes);
 
-// Раздача статических файлов фронтенда
+
 const frontendPath = path.join(__dirname, '../frontend/build');
 app.use(express.static(frontendPath));
 
-// Обработка остальных запросов (если не попали в маршруты API)
 app.get('*', (req, res) => {
   if (req.originalUrl.startsWith('/api')) {
     res.status(404).send('API route not found');
