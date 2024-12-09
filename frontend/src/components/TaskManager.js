@@ -9,7 +9,7 @@ const TaskManager = () => {
     title: '',
     description: '',
     dueDate: '',
-    notifyBefore: 60, // Добавлено поле для настройки времени уведомления
+    notifyBefore: 60, // Поле для настройки времени уведомления
     recurring: false,
     recurrencePattern: 'daily',
   });
@@ -23,7 +23,13 @@ const TaskManager = () => {
   const fetchTasks = async () => {
     try {
       const res = await API.get('/tasks');
-      setTasks(res.data);
+      const tasksWithLocalTime = res.data.map((task) => ({
+        ...task,
+        dueDate: task.dueDate
+          ? new Date(task.dueDate).toLocaleString('en-US', { timeZone: 'Europe/Kiev' }) // Указываем временную зону
+          : '',
+      }));
+      setTasks(tasksWithLocalTime);
     } catch (err) {
       console.error('Error fetching tasks:', err);
     }
@@ -60,7 +66,7 @@ const TaskManager = () => {
         title: selectedTemplate.defaultTitle || '',
         description: selectedTemplate.defaultDescription || '',
         dueDate: selectedTemplate.defaultDueDate
-          ? new Date(selectedTemplate.defaultDueDate).toISOString().split('T')[0]
+          ? new Date(selectedTemplate.defaultDueDate).toISOString().slice(0, -1) // Убираем миллисекунды
           : '',
         notifyBefore: selectedTemplate.defaultNotifyBefore || 60,
         recurring: selectedTemplate.defaultRecurring || false,
@@ -72,7 +78,12 @@ const TaskManager = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await API.post('/tasks', form);
+      const formData = {
+        ...form,
+        dueDate: form.dueDate ? new Date(form.dueDate).toISOString() : null, // Преобразуем дату в UTC
+      };
+
+      await API.post('/tasks', formData);
       setForm({
         title: '',
         description: '',

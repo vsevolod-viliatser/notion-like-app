@@ -22,8 +22,8 @@ const sendReminder = (task, email) => {
   const mailOptions = {
     from: process.env.EMAIL_USER,
     to: email,
-    subject: `Напоминание о задаче: ${task.title}`,
-    text: `Привет! Напоминаем о вашей задаче "${task.title}". Срок выполнения: ${new Date(task.dueDate).toLocaleString()}.`,
+    subject: `Нагадування про задачу: ${task.title}`,
+    text: `Привіт! Нагадуємо про вашу задачу "${task.title}". Срок виконання: ${new Date(task.dueDate).toLocaleString()}.`,
   };
 
   transporter.sendMail(mailOptions, (err, info) => {
@@ -47,8 +47,8 @@ const sendLoginNotification = (email) => {
   const mailOptions = {
     from: process.env.EMAIL_USER,
     to: email,
-    subject: 'Уведомление о входе в аккаунт',
-    text: `Здравствуйте! Вы успешно вошли в ваш аккаунт ${new Date().toLocaleString()}. Если это были не вы, пожалуйста, свяжитесь с поддержкой.`,
+    subject: 'Повідомлення про вхід в аккаунт',
+    text: `Добрий день, ви успішно зайшли в ваш аккаунт ${new Date().toLocaleString()}`,
   };
 
   transporter.sendMail(mailOptions, (err, info) => {
