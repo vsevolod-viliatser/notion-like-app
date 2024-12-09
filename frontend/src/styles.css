@@ -1,4 +1,3 @@
-/* Variables */
 :root {
   --primary-color: #4CAF50;
   --secondary-color: #2196F3;
@@ -6,7 +5,7 @@
   --text-color: #333;
   --bg-color: #f9f9f9;
   --border-color: #ddd;
-  --border-radius: 4px;
+  --border-radius: 20px; /* Increased for more rounded elements */
   --box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   --padding: 16px;
   --margin: 16px;
@@ -22,19 +21,21 @@ body {
   line-height: 1.6;
 }
 
+/* Buttons */
 button {
   padding: 10px 20px;
   font-size: 16px;
   color: white;
-  background-color: var(--primary-color);
+  background-color: gray;
   border: none;
   border-radius: var(--border-radius);
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 button:hover {
-  background-color: #45a049;
+  background-color: #9fa59f;
+  transform: scale(1.05);
 }
 
 button:focus {
@@ -49,6 +50,7 @@ button:focus {
   background-color: #d32f2f;
 }
 
+/* Input Fields */
 input, textarea, select {
   padding: 10px;
   margin: 10px 0;
@@ -63,12 +65,6 @@ input, textarea, select {
 input:focus, textarea:focus, select:focus {
   border-color: var(--primary-color);
   outline: none;
-}
-
-label {
-  font-weight: bold;
-  margin-bottom: 5px;
-  display: block;
 }
 
 /* Layout */
@@ -87,17 +83,118 @@ label {
   width: 250px;
   background-color: #fff;
   border-right: 1px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100vh;
   box-shadow: var(--box-shadow);
-  padding: var(--padding);
+  padding: 0;
 }
 
-.content {
-  flex: 1;
+.logout-section {
   padding: var(--padding);
-  background-color: var(--bg-color);
+  border-bottom: 1px solid var(--border-color);
+  text-align: center;
 }
 
-/* Sidebar */
+.logout-button {
+  width: 100%;
+  padding: 10px;
+  font-size: 14px;
+  background-color: var(--danger-color);
+  color: white;
+  border: none;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.logout-button:hover {
+  background-color: #d32f2f;
+  transform: scale(1.05);
+}
+
+/* Navigation Section */
+.navigation-section {
+  padding: var(--padding);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.navigation-section button {
+  display: block;
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 10px;
+  font-size: 14px;
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: var(--border-radius);
+  text-align: left;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.navigation-section button:hover {
+  background-color: #45a049;
+  transform: scale(1.05);
+}
+
+/* Page Management Section */
+.page-management-section {
+  padding: var(--padding);
+  flex-grow: 1;
+  overflow-y: auto;
+}
+
+.page-management-section ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.page-management-section ul li {
+  margin-bottom: 10px;
+}
+
+/* Pomodoro Timer Section */
+.pomodoro-section {
+  padding: var(--padding);
+  border-top: 1px solid var(--border-color);
+}
+
+/* Pomodoro Timer */
+.pomodoro-timer {
+  background: #f4f4f4;
+  border: 1px solid #ccc;
+  border-radius: var(--border-radius);
+  padding: 10px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.timer-display {
+  font-size: 2rem;
+  margin: 10px 0;
+}
+
+.timer-controls button {
+  background: #007bff;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: var(--border-radius);
+  margin: 5px;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.timer-controls button:hover {
+  background: #0056b3;
+  transform: scale(1.05);
+}
+
+/* Sidebar Items */
 .sidebar ul {
   list-style: none;
   padding: 0;
@@ -121,219 +218,39 @@ label {
   color: white;
 }
 
-/* Forms */
-.auth-container {
-  max-width: 400px;
-  margin: 50px auto;
-}
-
-.input-group {
-  margin-bottom: 15px;
-}
-
-.input-group input {
-  width: 100%;
-  padding: 8px;
-  box-sizing: border-box;
-}
-
-/* Cards */
-.card {
-  background-color: white;
+/* Block Buttons */
+.block {
+  display: flex;
+  align-items: center;
+  position: relative;
+  padding: 10px;
   border: 1px solid var(--border-color);
   border-radius: var(--border-radius);
-  box-shadow: var(--box-shadow);
-  padding: var(--padding);
-  margin-bottom: var(--margin);
-}
-
-.card:hover {
-  transform: translateY(-5px);
-  transition: all 0.2s ease-in-out;
-}
-
-/* Typography */
-h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-family);
+  background-color: #fff;
   margin-bottom: 10px;
-}
-
-h1 {
-  font-size: 2rem;
-}
-
-h2 {
-  font-size: 1.75rem;
-}
-
-h3 {
-  font-size: 1.5rem;
-}
-
-p {
-  margin-bottom: 15px;
-}
-
-/* Tables */
-.table-container {
-  margin: var(--margin) 0;
-}
-
-.table-container table {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-.table-container th, .table-container td {
-  padding: 10px;
-  text-align: left;
-  border: 1px solid var(--border-color);
-}
-
-.table-container th {
-  background-color: var(--primary-color);
-  color: white;
-}
-
-.table-container tr:nth-child(even) {
-  background-color: #f9f9f9;
-}
-
-.table-container tr:hover {
-  background-color: #f1f1f1;
-}
-
-/* Productivity Heatmap */
-.heatmap-container {
-  margin: var(--margin) 0;
-  text-align: center;
-}
-
-.heatmap-container svg {
-  width: 100%;
-  height: auto;
-  max-height: 200px;
-}
-
-.color-empty {
-  fill: #eeeeee;
-}
-
-.color-github-1 {
-  fill: #c6e48b;
-}
-
-.color-github-2 {
-  fill: #7bc96f;
-}
-
-.color-github-3 {
-  fill: #239a3b;
-}
-
-.color-github-4 {
-  fill: #196127;
-}
-
-/* Pomodoro Timer */
-.pomodoro-timer {
-  background: #f4f4f4;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  padding: 10px;
-  margin-bottom: 20px;
-  text-align: center;
-}
-
-.timer-display {
-  font-size: 2rem;
-  margin: 10px 0;
-}
-
-.timer-controls button {
-  background: #007bff;
-  color: white;
-  border: none;
-  padding: 5px 10px;
-  border-radius: 3px;
-  margin: 0 5px;
-  cursor: pointer;
-}
-
-.timer-controls button:hover {
-  background: #0056b3;
-}
-
-/* Reminders */
-.reminders {
-  background: #fff;
-  padding: 20px;
-  margin-bottom: 20px;
-  border-radius: var(--border-radius);
   box-shadow: var(--box-shadow);
 }
 
-.reminders ul {
-  list-style: none;
-  padding: 0;
-}
-
-.reminders li {
-  padding: 10px;
-  border-bottom: 1px solid var(--border-color);
-}
-
-.reminders li:last-child {
-  border-bottom: none;
-}
-
-.reminders strong {
-  display: block;
-  margin-bottom: 5px;
-}
-.sidebar button {
-  padding: 6px 10px; /* Smaller padding */
-  font-size: 14px; /* Smaller font size */
-  margin: 5px 0; /* Adjusted margin */
-  background-color: var(--primary-color);
-  color: white;
+.block button {
+  width: 24px;
+  height: 24px;
+  font-size: 16px;
+  color: #333;
+  background: none;
   border: none;
-  border-radius: var(--border-radius);
+  border-radius: 50%;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 10px;
+  transition: color 0.3s ease;
 }
 
-.sidebar button:hover {
-  background-color: #45a049;
+.block button:hover {
+  color: var(--primary-color);
 }
 
-.sidebar ul li a {
-  padding: 6px 10px; /* Adjust link padding for consistency */
-  font-size: 14px; /* Match button font size */
-}
-
-.sidebar ul li a:hover {
-  background-color: var(--primary-color);
-  color: white;
-}
-
-.sidebar ul {
-  padding: 0;
-  margin: 0;
-}
-
-.sidebar ul li {
-  margin: 5px 0; /* Smaller spacing between items */
-}
-.toggle-button {
-  padding: 5px 10px;
-  background-color: #ccc;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-.toggle-button.active {
-  background-color: #4caf50;
-  color: white;
+.block-content {
+  flex: 1;
 }

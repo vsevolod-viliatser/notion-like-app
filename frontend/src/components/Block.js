@@ -1,9 +1,8 @@
 import React from 'react';
 import TableBlock from './TableBlock';
-import ListBlock from './ListBlock'
-import ToDoList from "./ToDoList"
+import ListBlock from './ListBlock';
+import ToDoList from './ToDoList';
 import API from '../api';
-
 import { useHotkeys } from 'react-hotkeys-hook';
 
 const Block = ({ block, setBlocks, blocks }) => {
@@ -17,25 +16,7 @@ const Block = ({ block, setBlocks, blocks }) => {
     }
   };
 
-  // Горячие клавиши для управления блоком
   useHotkeys('ctrl+d', deleteBlock, { enableOnTags: ['INPUT', 'TEXTAREA'] });
-
-  const moveBlock = (direction) => {
-    const currentIndex = blocks.findIndex((b) => b._id === block._id);
-    const targetIndex = currentIndex + direction;
-
-    if (targetIndex < 0 || targetIndex >= blocks.length) return;
-
-    const updatedBlocks = [...blocks];
-    [updatedBlocks[currentIndex], updatedBlocks[targetIndex]] = [
-      updatedBlocks[targetIndex],
-      updatedBlocks[currentIndex],
-    ];
-    setBlocks(updatedBlocks);
-  };
-
-  useHotkeys('ctrl+up', () => moveBlock(-1), { enableOnTags: ['INPUT', 'TEXTAREA'] });
-  useHotkeys('ctrl+down', () => moveBlock(1), { enableOnTags: ['INPUT', 'TEXTAREA'] });
 
   const renderBlockContent = () => {
     switch (block.type) {
@@ -70,11 +51,12 @@ const Block = ({ block, setBlocks, blocks }) => {
 
   return (
     <div className="block">
-      {renderBlockContent()}
-      <button onClick={deleteBlock}>Delete</button>
+      <button onClick={deleteBlock} title="Delete Block">
+        ×
+      </button>
+      <div className="block-content">{renderBlockContent()}</div>
     </div>
   );
 };
-
 
 export default Block;

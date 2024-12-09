@@ -26,13 +26,14 @@ const PageEditor = ({ pageId, onUpdatePage }) => {
     fetchPageData();
   }, [pageId]);
 
-  const handleSaveTitle = async () => {
+  const handleTitleBlur = async () => {
     try {
       const updatedPage = await API.put(`/pages/${pageId}`, { title: pageTitle });
       onUpdatePage(updatedPage.data); // Update the title in the HomePage
-      setEditingTitle(false);
     } catch (err) {
       console.error('Failed to update title:', err);
+    } finally {
+      setEditingTitle(false);
     }
   };
 
@@ -42,20 +43,17 @@ const PageEditor = ({ pageId, onUpdatePage }) => {
     <div className="page-editor">
       <div className="page-header">
         {editingTitle ? (
-          <div>
-            <input
-              type="text"
-              value={pageTitle}
-              onChange={(e) => setPageTitle(e.target.value)}
-            />
-            <button onClick={handleSaveTitle}>Зберегти</button>
-            <button onClick={() => setEditingTitle(false)}>Скасувати</button>
-          </div>
+          <input
+            type="text"
+            value={pageTitle}
+            onChange={(e) => setPageTitle(e.target.value)}
+            onBlur={handleTitleBlur}
+            autoFocus
+          />
         ) : (
-          <h1>
+          <h2 onClick={() => setEditingTitle(true)} className="editable-title">
             {pageTitle}
-            <button onClick={() => setEditingTitle(true)}>Редагувати</button>
-          </h1>
+          </h2>
         )}
       </div>
       <BlockList blocks={blocks} setBlocks={setBlocks} pageId={pageId} />
